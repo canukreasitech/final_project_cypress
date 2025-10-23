@@ -15,3 +15,10 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
+
+// 🔧 Ignore ResizeObserver loop error (umum terjadi di Chrome)
+Cypress.on('uncaught:exception', (err) => {
+  if (err.message.includes('ResizeObserver loop completed with undelivered notifications')) {
+    return false; // ✅ Mencegah Cypress gagal karena error ini
+  }
+});

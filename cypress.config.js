@@ -1,9 +1,22 @@
-const { defineConfig } = require("cypress");
+const { defineConfig } = require('cypress')
 
 module.exports = defineConfig({
   e2e: {
+    baseUrl: 'https://example.com',
     setupNodeEvents(on, config) {
-      // implement node event listeners here
+      require('cypress-mochawesome-reporter/plugin')(on)
+    },
+    reporter: 'cypress-mochawesome-reporter',
+    reporterOptions: {
+      charts: true,
+      reportPageTitle: 'Final Project QA',
+      embeddedScreenshots: true,
+      inlineAssets: true,
+    },
+    env: {
+      agodaUrl: 'https://www.agoda.com',
+      amazonUrl: 'https://www.amazon.com',
+      youtubeUrl: 'https://www.youtube.com/feed/trending',
     },
   },
-});
+})
